@@ -22,5 +22,8 @@ public class HotSpot {
     public void start() throws ClassNotFoundException {
         ClassFile mainClassFile = classLoader.loadClass(mainClass);
         mainClassFile.getMainMethod();
+        StackFrame mainFrame = new StackFrame(mainClassFile.getMainMethod(), mainClassFile.getConstantPool());
+        Thread mainThread = new Thread("main", mainFrame, classLoader);
+        mainThread.start();
     }
 }
