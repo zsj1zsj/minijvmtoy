@@ -1,6 +1,6 @@
 package org.example.jvm;
 
-import org.example.jvm.BootStrapClassLoader;
+
 import tech.medivh.classpy.classfile.ClassFile;
 
 import java.io.File;
@@ -14,11 +14,13 @@ public class HotSpot {
 
     public HotSpot(String mainClass, String classPathString) {
         this.mainClass = mainClass;
-        this.classLoader = new BootStrapClassLoader(Arrays.asList(classPathString.split(File.separator)));
+        System.out.println(File.pathSeparator);
+        this.classLoader = new BootStrapClassLoader(Arrays.asList(classPathString.split(File.pathSeparator)));
     }
 
 
     public void start() throws ClassNotFoundException {
-        ClassFile classFile = classLoader.loadClass(mainClass);
+        ClassFile mainClassFile = classLoader.loadClass(mainClass);
+        mainClassFile.getMainMethod();
     }
 }
