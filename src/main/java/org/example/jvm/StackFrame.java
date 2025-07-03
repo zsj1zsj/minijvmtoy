@@ -4,20 +4,19 @@ import tech.medivh.classpy.classfile.MethodInfo;
 import tech.medivh.classpy.classfile.bytecode.Instruction;
 import tech.medivh.classpy.classfile.constant.ConstantPool;
 
-import java.lang.reflect.Method;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.List;
 
 public class StackFrame {
 
-    private MethodInfo methodInfo;
-    private Object[] localVariables;
+    final MethodInfo methodInfo;
+    final Object[] localVariables;
 
-    private Deque<Object> operandStack;
+    final Deque<Object> operandStack;
 
-    private List<Instruction> codes;
-    private ConstantPool constantPool;
+    final List<Instruction> codes;
+    public ConstantPool constantPool;
 
     int currentIndex;
 
@@ -33,4 +32,9 @@ public class StackFrame {
     public Instruction getNextInstruction() {
         return codes.get(currentIndex++);
     }
+
+    public void pushObjectToOperandStack(Object object){
+        this.operandStack.push(object);
+    }
+
 }

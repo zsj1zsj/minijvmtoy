@@ -4,6 +4,7 @@ package org.example.jvm;
 import tech.medivh.classpy.classfile.ClassFile;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 
 public class HotSpot {
@@ -19,7 +20,7 @@ public class HotSpot {
     }
 
 
-    public void start() throws ClassNotFoundException {
+    public void start() throws ClassNotFoundException, NoSuchFieldException, InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         ClassFile mainClassFile = classLoader.loadClass(mainClass);
         mainClassFile.getMainMethod();
         StackFrame mainFrame = new StackFrame(mainClassFile.getMainMethod(), mainClassFile.getConstantPool());
