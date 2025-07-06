@@ -33,8 +33,18 @@ public class StackFrame {
         return codes.get(currentIndex++);
     }
 
-    public void pushObjectToOperandStack(Object object){
+    public void pushObjectToOperandStack(Object object) {
         this.operandStack.push(object);
+    }
+
+    public void jumpTo(int index) {
+        for (int i = 0; i < codes.size(); i++) {
+            Instruction instruction = codes.get(i);
+            if(instruction.getPc()==index){
+                this.currentIndex = i;
+                return;
+            }
+        }
     }
 
 }
